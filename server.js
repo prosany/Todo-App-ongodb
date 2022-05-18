@@ -57,7 +57,10 @@ client.connect((err) => {
       if (err) {
         res.send(err);
       } else {
-        res.send(result);
+        res.send({
+          status: 1,
+          message: "Todo Inserted Successfully",
+        });
       }
     });
   });
@@ -71,7 +74,10 @@ client.connect((err) => {
         if (err) {
           res.send(err);
         } else {
-          res.send(result);
+          res.send({
+            status: 1,
+            message: "Todo Updated Successfully",
+          });
         }
       }
     );
@@ -85,7 +91,10 @@ client.connect((err) => {
         if (err) {
           res.send(err);
         } else {
-          res.send(result);
+          res.send({
+            status: 1,
+            message: "Todo Deleted Successfully",
+          });
         }
       }
     );
