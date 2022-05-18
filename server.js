@@ -29,8 +29,19 @@ client.connect((err) => {
   );
   const todosCollection = client.db("ToDo_App").collection("todos");
 
-  // Get All Todos
+  // Get Specific User Todo
   app.get("/todos", (req, res) => {
+    todosCollection.find({ email: req.query.email }).toArray((err, todos) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(todos);
+      }
+    });
+  });
+
+  // Get All Todos
+  app.get("/all-todos", (req, res) => {
     todosCollection.find({}).toArray((err, todos) => {
       if (err) {
         res.send(err);
