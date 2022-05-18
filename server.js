@@ -9,12 +9,14 @@ require("dotenv").config();
 const port = process.env.PORT || 8080;
 
 // Use Cors and bodyParser
-app.use(cors({
-  "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -70,7 +72,7 @@ client.connect((err) => {
   });
 
   // Update Todo
-  app.patch("/todos/:id", (req, res) => {
+  app.post("/update-todo/:id", (req, res) => {
     todosCollection.updateOne(
       { _id: ObjectID(req.params.id) },
       { $set: { status: req.body.status } },
